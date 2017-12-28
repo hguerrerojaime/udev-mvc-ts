@@ -1,0 +1,32 @@
+{
+  "name": "udev-mvc-ts",
+  "version": "1.0.0",
+  "description": "Typescript MVC Framework using express and inversify",
+  "main": "lib/index.js",
+  "scripts": {
+    "tslint": "node_modules/.bin/tslint -p tslint.json",
+    "tsc": "node_modules/.bin/tsc",
+    "build": "npm run tslint && npm run tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hguerrerojaime/udev-mvc-ts.git"
+  },
+  "author": "Humberto Guerrero <hguerrerojaime@gmail.com> (https://github.com/hguerrerojaime)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hguerrerojaime/udev-mvc-ts/issues"
+  },
+  "homepage": "https://github.com/hguerrerojaime/udev-mvc-ts#readme",
+  "devDependencies": {
+    "@types/node": "^8.5.2",
+    "nodemon": "^1.14.3",
+    "tslint": "^5.8.0",
+    "typescript": "^2.5.3"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "inversify": "^4.9.0",
+    "reflect-metadata": "^0.1.10"
+  }
+}
