@@ -7,8 +7,7 @@
     "tslint": "node_modules/.bin/tslint \"src/**/*.ts\" -e \"**/test/**\" -p tslint.json",
     "tsc": "node_modules/.bin/tsc",
     "build": "npm run tslint && npm run tsc && npm test",
-    "test": "node_modules/.bin/mocha -r ts-node/register test/**/*.spec.ts",
-    "publish": "npm run build && npm publish"
+    "test": "node_modules/.bin/mocha -r ts-node/register test/**/*.spec.ts"
   },
   "repository": {
     "type": "git",
