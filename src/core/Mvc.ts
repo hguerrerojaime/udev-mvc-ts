@@ -49,7 +49,7 @@ export class Mvc {
   }
 
   private configureRoute(route,method,controllerName,actionName) {
-    this.application[method](route, function(req,res) {
+    this.application[method](route, (req,res) => {
       const controller = this.container.get(`${controllerName}Controller`);
       const action = controller[actionName];
 
