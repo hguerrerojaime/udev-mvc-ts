@@ -1,6 +1,6 @@
 {
   "name": "udev-mvc-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Typescript MVC Framework using express and inversify",
   "main": "lib/udev-mvc-ts.js",
   "scripts": {

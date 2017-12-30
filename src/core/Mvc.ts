@@ -22,6 +22,7 @@ export class Mvc {
   init():void {
     this._container = new MvcContainer(this.options.dependencies);
     this._application = this.options.express();
+    this.options.configure(this.application);
     this.configureRouter(this.options.routes);
   }
 
