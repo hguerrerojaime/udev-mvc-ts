@@ -1,20 +1,19 @@
-import MvcContainer from './MvcContainer';
-import MvcOptions from './MvcOptions';
-import Router from '../web/Router';
+import { MvcContainer } from './MvcContainer';
+import { MvcOptions } from './MvcOptions';
+import { Router } from '../web/Router';
+import { MvcInitializationError } from '../errors/MvcInitializationError';
 
-import "reflect-metadata";
-
-export default class Mvc {
+export class Mvc {
 
   private _options: MvcOptions;
   private _application: any;
   private _container: MvcContainer;
 
-
   constructor(_opts: MvcOptions) {
     this._options = Object.assign({},{
       express: require('express'),
-      configure: (app) => {}
+      configure: (app) => {},
+      routes: {}
     },_opts);
 
     this.init();
@@ -39,13 +38,10 @@ export default class Mvc {
   }
 
   private configureRouter(router:Router) {
-    console.log("Configuring router...");
     for (const key in router) {
       const route = router[key];
-
       for (const method in route) {
         const routeMapping = route[method];
-        console.log(`Configuring ${method} ${key} to controller: ${routeMapping.controller}, action: ${routeMapping.action}`);
         this.configureRoute(key,method,routeMapping.controller,routeMapping.action);
       }
     }
@@ -55,6 +51,11 @@ export default class Mvc {
     this.application[method](route, function(req,res) {
       const controller = this.container.get(`${controllerName}Controller`);
       const action = controller[actionName];
+
+      if (!action) {
+        throw new MvcInitializationError(`action ${actionName} is undefined for controller ${controllerName}Controller`)
+      }
+
       const requestProcessor = this.container.get('requestProcessor');
       requestProcessor.process(controller,action,req,res);
     });

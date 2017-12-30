@@ -1,7 +1,9 @@
 import { Container } from "inversify";
-import Dependencies from './Dependencies';
+import { Dependencies } from './Dependencies';
+import { RequestProcessor } from '../web/RequestProcessor';
+import { Controller } from '../web/Controller';
 
-export default class MvcContainer extends Container {
+export class MvcContainer extends Container {
 
   private _dependencies;
 
@@ -35,44 +37,60 @@ export default class MvcContainer extends Container {
 
     for (const key in values) {
       const value = values[key];
-      console.log(`Register value [${key}]`);
-      this.bind(key).toConstantValue(value);
+      this.injectValue(key,value);
     }
+  }
+
+  public injectValue(key,value) {
+    this.bind(key).toConstantValue(value);
   }
 
   private injectControllers() {
     const controllers = this.dependencies.controllers;
     for (const key in controllers) {
       const value = controllers[key];
-      console.log(`Register controller [${key}]`);
-      this.bind(key).to(value);
+      this.injectController(key,value);
     }
+  }
+
+  public injectController(key,value) {
+    const isController = value.prototype instanceof Controller;
+    if (!isController) {
+      throw new TypeError(`${key} must extend a Controller Type`);
+    }
+    this.bind(key).to(value);
   }
 
   private injectFactories() {
     const factories = this.dependencies.factories;
     for (const key in factories) {
       const value = factories[key];
-      console.log(`Register factory [${key}]`);
-      this.bind(key).toFactory(value);
+      this.injectFactory(key,value);
     }
+  }
+
+  public injectFactory(key,value) {
+    this.bind(key).toFactory(value);
   }
 
   private injectServices() {
     const services = this.dependencies.services;
     for (const key in services) {
       const value = services[key];
-      console.log(`Register service [${key}]`);
-      this.bind(key).to(value);
+      this.injectService(key,value);
     }
   }
 
+  public injectService(key,value) {
+    this.bind(key).to(value);
+  }
+
   private injectSelf() {
-    this.bind('self').toConstantValue(this);
+    this.bind('container').toConstantValue(this);
   }
 
   private injectRequestProcessor() {
-    this.bind('requestProcessor').to(require('../web/RequestProcessor').default);
+    this.bind('requestProcessor').to(RequestProcessor);
   }
 
 

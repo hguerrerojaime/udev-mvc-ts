@@ -1,20 +1,27 @@
 const parameterfy = require('../core/util').parameterfy;
 import { injectable } from "inversify";
 
-@injectable()
-export default class RequestProcessor {
+import { MvcError } from '../errors/MvcError';
 
-  process(controller,action,req,res) {
+@injectable()
+export class RequestProcessor {
+
+  process(controller,action,request,response) {
     const actionProxy = parameterfy(action,controller);
     const actionPromise = actionProxy(Object.assign({},{
-      $request: req,
-      $response: res
-    },req.params));
+      $request: request,
+      $response: response
+    },request.params));
 
-    if (!res.headersSent) {
-      controller.setResponseContentType(res);
-      controller.respond(actionPromise,req,res);
+    if (!(actionPromise instanceof Promise)) {
+      throw new MvcError("action must return a promise, either return a promise instance or make the function async");
     }
+
+    if (!response.headersSent) {
+      controller.setResponseContentType(response);
+      controller.respond(actionPromise,request,response);
+    }
+
   }
 
 }

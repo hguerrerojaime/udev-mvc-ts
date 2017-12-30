@@ -1,6 +1,6 @@
-import Controller from './Controller';
+import { Controller } from './Controller';
 
-export default class RestController extends Controller {
+export class RestController extends Controller {
   get contentType() {
     return "application/json";
   }

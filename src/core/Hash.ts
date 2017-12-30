@@ -1,3 +1,3 @@
-export default interface Hash<V> {
+export interface Hash<V> {
   [key: string]: V;
 }

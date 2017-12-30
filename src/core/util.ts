@@ -35,3 +35,7 @@ exports.parameterfy = (function() {
         };
     };
 }());
+
+exports.isAsync = function(fn) {
+  return fn.constructor.name === 'AsyncFunction';
+}

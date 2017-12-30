@@ -1,7 +1,7 @@
 import { injectable } from "inversify";
 
 @injectable()
-export default class Controller {
+export class Controller {
   get contentType() {
     return "text/plain";
   }

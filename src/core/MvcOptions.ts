@@ -1,7 +1,7 @@
-import Router from '../web/Router';
-import Dependencies from './Dependencies';
+import { Router } from '../web/Router';
+import { Dependencies } from './Dependencies';
 
-export default interface MvcOptions {
+export interface MvcOptions {
   express?: any;
   configure: Function;
   routes: Router,

@@ -1,4 +1,4 @@
-import Hash from '../core/Hash';
+import { Hash } from '../core/Hash';
 
 export interface RouteMapping {
   controller: string;
@@ -6,4 +6,4 @@ export interface RouteMapping {
 }
 
 export interface RouteMethod extends Hash<RouteMapping> {}
-export default interface Router extends Hash<RouteMethod> {}
+export interface Router extends Hash<RouteMethod> {}

@@ -2,11 +2,12 @@
   "name": "udev-mvc-ts",
   "version": "1.0.0",
   "description": "Typescript MVC Framework using express and inversify",
-  "main": "lib/index.js",
+  "main": "lib/udev-mvc-ts.js",
   "scripts": {
-    "tslint": "node_modules/.bin/tslint -p tslint.json",
+    "tslint": "node_modules/.bin/tslint \"src/**/*.ts\" -e \"**/test/**\" -p tslint.json",
     "tsc": "node_modules/.bin/tsc",
-    "build": "npm run tslint && npm run tsc"
+    "build": "npm run tslint && npm run tsc && npm test",
+    "test": "node_modules/.bin/mocha -r ts-node/register test/**/*.spec.ts"
   },
   "repository": {
     "type": "git",
@@ -19,8 +20,14 @@
   },
   "homepage": "https://github.com/hguerrerojaime/udev-mvc-ts#readme",
   "devDependencies": {
+    "@types/chai": "^4.0.10",
+    "@types/mocha": "^2.2.45",
     "@types/node": "^8.5.2",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "mock-express-response": "^0.2.2",
     "nodemon": "^1.14.3",
+    "ts-node": "^4.1.0",
     "tslint": "^5.8.0",
     "typescript": "^2.5.3"
   },
