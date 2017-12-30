@@ -57,7 +57,7 @@ export class Mvc {
         throw new MvcInitializationError(`action ${actionName} is undefined for controller ${controllerName}Controller`)
       }
 
-      const requestProcessor = this.container.get('requestProcessor');
+      const requestProcessor:any = this.container.get('requestProcessor');
       requestProcessor.process(controller,action,req,res);
     });
   }
