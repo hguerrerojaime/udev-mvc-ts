@@ -19,7 +19,7 @@ export class HttpError extends Error {
 
   toJSON() {
 
-    const cause = null;
+    let cause = null;
 
     if (this.cause instanceof HttpError) {
       cause = this.cause.toJSON();
