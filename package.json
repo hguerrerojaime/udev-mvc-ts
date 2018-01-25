@@ -1,6 +1,6 @@
 {
   "name": "udev-mvc-ts",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Typescript MVC Framework using express and inversify",
   "main": "lib/udev-mvc-ts.js",
   "scripts": {
@@ -26,7 +26,6 @@
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
     "mock-express-response": "^0.2.2",
-    "nodemon": "^1.14.3",
     "ts-node": "^4.1.0",
     "tslint": "^5.8.0",
     "typescript": "^2.5.3"

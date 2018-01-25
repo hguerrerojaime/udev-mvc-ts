@@ -10,5 +10,8 @@ export * from './core/Hash';
 export * from './core/MvcContainer';
 export * from './core/MvcOptions';
 export * from './core/Mvc';
+export * from './errors/ApplicationError';
+export * from './errors/RequestError';
+export * from './errors/HttpError';
 export * from './errors/MvcError';
 export * from './errors/MvcInitializationError';
